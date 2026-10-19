@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 4.5rem;
+    --slant: clamp(20px, 3.4vw, 52px);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply overflow-x-clip bg-ivory font-body text-base leading-relaxed text-navy-900 antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-bold leading-tight tracking-tight;
+  }
+  ::selection {
+    @apply bg-gold-400 text-navy-950;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-gold-500;
+  }
+  .tone-gold :focus-visible {
+    @apply outline-navy-900;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Signature geometry: the slanted top edge taken from the Jat Law logo. */
+  .slant-top {
+    margin-top: calc(var(--slant) * -1);
+    padding-top: var(--slant);
+    clip-path: polygon(0 0, 100% var(--slant), 100% 100%, 0 100%);
+  }
+  .pillar-shape {
+    clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
+  }
+  .slab-shape {
+    clip-path: polygon(0 0, 100% 18px, 100% 100%, 0 100%);
+  }
+  .slab-cap {
+    clip-path: polygon(0 0, 100% 18px, 100% 26px, 0 8px);
+  }
+
+  /*
+   * Section tones. Every section sets its own palette through CSS variables so cards,
+   * buttons and text adapt without prop plumbing:
+   *   --accent text accent   --muted secondary text   --card / --card-fg card surface + text
+   *   --line hairlines       --inv / --inv-fg inverse surface + text (contrast cards)
+   */
+  .tone-navy {
+    @apply bg-navy-950 text-ivory;
+    --accent: #e6cd4a;
+    --muted: rgb(248 245 236 / 0.76);
+    --card: #133a62;
+    --card-fg: #f8f5ec;
+    --line: rgb(255 255 255 / 0.18);
+    --inv: #f8f5ec;
+    --inv-fg: #0c2a48;
+  }
+  .tone-blue {
+    @apply bg-navy-800 text-ivory;
+    --accent: #e6cd4a;
+    --muted: rgb(248 245 236 / 0.8);
+    --card: #0c2a48;
+    --card-fg: #f8f5ec;
+    --line: rgb(255 255 255 / 0.2);
+    --inv: #f8f5ec;
+    --inv-fg: #0c2a48;
+  }
+  .tone-gold {
+    @apply bg-gold-500 text-navy-950;
+    --accent: #0c2a48;
+    --muted: rgb(6 26 48 / 0.82);
+    --card: #f8f5ec;
+    --card-fg: #0c2a48;
+    --line: rgb(6 26 48 / 0.3);
+    --inv: #0c2a48;
+    --inv-fg: #f8f5ec;
+  }
+  .tone-ivory {
+    @apply bg-ivory text-navy-900;
+    --accent: #7c6802;
+    --muted: rgb(12 42 72 / 0.78);
+    --card: #ffffff;
+    --card-fg: #0c2a48;
+    --line: rgb(12 42 72 / 0.16);
+    --inv: #0c2a48;
+    --inv-fg: #f8f5ec;
+  }
+  .tone-champagne {
+    @apply bg-gold-100 text-navy-900;
+    --accent: #7c6802;
+    --muted: rgb(12 42 72 / 0.8);
+    --card: #fffdf4;
+    --card-fg: #0c2a48;
+    --line: rgb(12 42 72 / 0.18);
+    --inv: #0c2a48;
+    --inv-fg: #f8f5ec;
+  }
+  .tone-sky {
+    @apply bg-navy-100 text-navy-900;
+    --accent: #7c6802;
+    --muted: rgb(12 42 72 / 0.8);
+    --card: #ffffff;
+    --card-fg: #0c2a48;
+    --line: rgb(12 42 72 / 0.18);
+    --inv: #0c2a48;
+    --inv-fg: #f8f5ec;
+  }
+}
